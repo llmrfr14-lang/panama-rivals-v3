@@ -1,0 +1,26 @@
+# ============================================================
+#  Railway config — despliegue de la Liga RL
+#  ------------------------------------------------------------
+#  Railway detecta el Dockerfile solo. Este archivo le indica
+#  el healthcheck y el arranque. Para persistir datos, sigue
+#  las instrucciones de DEPLOY.md (agregar un Volume en
+#  /app/data desde el dashboard).
+#
+#  Uso:
+#    1. Crea cuenta en https://railway.app (con GitHub)
+#    2. New Project → Deploy from GitHub → panama-rivals-v3
+#    3. Entra al dashboard y agrega:
+#         - Variables: SECRET_KEY, ADMIN_PASS
+#         - Volume montado en /app/data
+#    4. Railway te da la URL automáticamente.
+# ============================================================
+[build]
+  builder = "DOCKERFILE"
+
+[deploy]
+  # La app escucha en 0.0.0.0:$PORT (Railway inyecta $PORT)
+  # Healthcheck para que Railway reinicie si algo falla
+  healthcheck = "/healthz"
+  healthcheck_timeout = 60
+  restartPolicyType = "ON_FAILURE"
+  restartPolicyMaxRetries = 5

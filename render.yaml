@@ -1,0 +1,39 @@
+# ============================================================
+#  Render Blueprint — Despliegue automático de la Liga RL
+#  ------------------------------------------------------------
+#  Al conectar tu repo de GitHub en Render y elegir
+#  "Blueprint", Render crea SOLO esto:
+#    - Web service (Dockerfile)
+#    - Disco persistente montado en /app/data
+#    - Health check en /healthz
+#    - Variables de entorno
+#  Sin configurar nada a mano.
+#
+#  Cómo usarlo:
+#    1. Crea cuenta gratis en https://render.com
+#    2. New → Blueprint → conectá tu repo panama-rivals-v3
+#    3. Render detecta este archivo y crea todo.
+#
+#  Después de desplegar: cambia SECRET_KEY y ADMIN_PASS
+#  en el dashboard de Render (Environment), y si compraste
+#  dominio, Settings → Custom Domain.
+# ============================================================
+services:
+  - type: web
+    name: panama-rivals
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    # Dockerfile expone el puerto dinámico (0.0.0.0:$PORT),
+    # Render inyecta $PORT automáticamente.
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true     # genera una clave aleatoria segura
+      - key: ADMIN_PASS
+        value: change-me        # ← CAMBIA esta clave tras el primer logueo
+    disk:
+      name: liga-data
+      mountPath: /app/data
+      sizeGB: 1
