@@ -87,10 +87,26 @@ El proyecto ya incluye:
 
 ---
 
-## 🌐 Paso 3 — Conectar tu dominio propio (panamarivals.com)
+## 🌐 Paso 3 — Dominio (gratis o propio)
 
-Una vez la app está viva en el servicio, **compra un dominio** en
-Namecheap / Cloudflare / Gody (cuesta ~$10/año) y conéctalo:
+### ✅ Opción gratis (recomendada para empezar): `*.onrender.com`
+
+Cada servicio de Render recibe **automáticamente** un dominio gratis con HTTPS:
+
+```
+https://tu-app.onrender.com
+# por ejemplo:
+https://panama-rivals.onrender.com
+```
+
+**No pagas nada. No compras nada.** Este dominio funciona para siempre
+mientras uses el plan free. Es lo único que necesitas para que la liga
+quede en línea.
+
+### 💰 Opción de pago (opcional): tu dominio propio (`panamarivals.com`)
+
+Solo si quieres una URL más corta/recordable, compra un dominio en
+Namecheap / Cloudflare / Gody (~$10/año) y conéctalo:
 
 - **Render**: Settings → Domains → agrega `panamarivals.com`
 - **Railway**: Settings → Custom Domains → agrega el dominio
